@@ -85,7 +85,6 @@
     }
   }
 
-  /* Yükleniyor çubuğu */
   .loader {
     width: 160px;
     height: 1px;
@@ -122,7 +121,6 @@
     }
   }
 
-  /* Splash çıkış animasyonu */
   .splash.dismiss .s-letter {
     animation: splashLetterOut 0.7s cubic-bezier(0.4, 0, 1, 1) forwards;
   }
@@ -166,7 +164,6 @@
     height: 100%;
   }
 
-  /* Grain katmanı (CSS ile destek) */
   .grain-overlay {
     position: absolute;
     inset: 0;
@@ -185,7 +182,6 @@
     75%      { transform: translate(-1%, -2%); }
   }
 
-  /* Vignette */
   .vignette {
     position: absolute;
     inset: 0;
@@ -199,7 +195,6 @@
     );
   }
 
-  /* Yazı alanı */
   .stage {
     position: absolute;
     inset: 0;
@@ -258,7 +253,6 @@
     width: 0.35em;
   }
 
-  /* Alt çizgi */
   .divider {
     margin-top: 2.2rem;
     width: 0;
@@ -279,82 +273,125 @@
   }
 
   /* ==========================================================
-     TIKTOK BÖLÜMÜ
+     TIKTOK BÖLÜMÜ — DAHA GERİ PLANDA
      ========================================================== */
   #tiktok-section {
     position: relative;
     background: #000;
-    padding: 7rem 1.5rem 5rem;
+    padding: 4rem 1.5rem 3rem; /* küçültüldü */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 1.8rem; /* küçültüldü */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* daha silik */
   }
 
   .tiktok-heading {
-    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-size: clamp(0.85rem, 2vw, 1.1rem); /* küçültüldü */
     font-weight: 300;
     font-style: italic;
-    color: #fff;
-    letter-spacing: 0.04em;
-    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.5); /* daha silik */
+    letter-spacing: 0.08em;
     text-align: center;
   }
 
   .tiktok-card {
     width: 100%;
-    max-width: 480px;
-    border-radius: 20px;
+    max-width: 340px; /* küçültüldü */
+    border-radius: 16px;
     overflow: hidden;
     background: #0a0a0a;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow:
-      0 30px 80px rgba(0, 0, 0, 0.8),
-      0 0 60px rgba(255, 255, 255, 0.02);
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    border: 1px solid rgba(255, 255, 255, 0.06); /* daha silik */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
+    cursor: pointer;
+    aspect-ratio: 9 / 16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
   }
 
   .tiktok-card:hover {
-    transform: translateY(-4px);
-    box-shadow:
-      0 40px 100px rgba(0, 0, 0, 0.9),
-      0 0 80px rgba(255, 255, 255, 0.04);
+    transform: translateY(-3px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
   }
 
-  .tiktok-card iframe {
-    display: block;
+  /* Oynatma butonu (karedeki ok) */
+  .play-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+    pointer-events: none; /* kart tıklaması yeterli */
+  }
+
+  .play-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+    margin-left: 3px; /* optik denge */
+  }
+
+  .tiktok-card:hover .play-btn {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* iframe konteyneri (tıklanınca dolar) */
+  .video-frame {
+    position: absolute;
+    inset: 0;
+    display: none;
+  }
+
+  .video-frame iframe {
     width: 100%;
-    aspect-ratio: 9 / 16;
+    height: 100%;
     border: none;
+    display: block;
     background: #000;
+  }
+
+  .tiktok-card.playing .play-btn {
+    display: none;
+  }
+
+  .tiktok-card.playing .video-frame {
+    display: block;
   }
 
   .tiktok-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.7rem;
-    padding: 1rem 2.4rem;
+    gap: 0.6rem;
+    padding: 0.7rem 1.8rem; /* küçültüldü */
     border-radius: 999px;
     text-decoration: none;
     color: #000;
     background: #fff;
-    font-size: 0.82rem;
+    font-size: 0.7rem;
     font-family: 'Helvetica Neue', 'Arial', sans-serif;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 500;
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
                 box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
                 background 0.3s ease;
-    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.08);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.06);
   }
 
   .tiktok-link:hover {
     transform: scale(1.03);
-    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.12);
     background: #f0f0f0;
   }
 
@@ -363,20 +400,20 @@
   }
 
   .tiktok-link svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     fill: currentColor;
     flex-shrink: 0;
   }
 
   .tiktok-note {
-    color: rgba(255, 255, 255, 0.25);
-    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.18); /* daha silik */
+    font-size: 0.62rem;
     font-family: 'Helvetica Neue', 'Arial', sans-serif;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     text-align: center;
-    max-width: 380px;
-    line-height: 1.8;
+    max-width: 320px;
+    line-height: 1.7;
     text-transform: uppercase;
     font-weight: 400;
   }
@@ -386,14 +423,14 @@
      ========================================================== */
   .footer {
     background: #000;
-    padding: 3rem 1.5rem;
+    padding: 2.5rem 1.5rem;
     text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
   }
 
   .footer p {
-    color: rgba(255, 255, 255, 0.2);
-    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 0.62rem;
     font-family: 'Helvetica Neue', 'Arial', sans-serif;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -408,11 +445,11 @@
     }
 
     #tiktok-section {
-      padding: 5rem 1rem 3rem;
+      padding: 3rem 1rem 2.5rem;
     }
 
     .tiktok-card {
-      max-width: 100%;
+      max-width: 300px;
     }
 
     .title {
@@ -430,9 +467,13 @@
     }
 
     .tiktok-link {
-      padding: 0.85rem 1.8rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
+      padding: 0.65rem 1.5rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+    }
+
+    .tiktok-card {
+      max-width: 260px;
     }
   }
 
@@ -463,7 +504,7 @@
 </div>
 
 <!-- ==========================================================
-     ANA SAHNE
+     ANA SAHNE — SENİ SEVİYORUM
      ========================================================== -->
 <div id="scene">
   <canvas id="canvas"></canvas>
@@ -476,22 +517,34 @@
 </div>
 
 <!-- ==========================================================
-     TIKTOK
+     TIKTOK — GERİ PLANDA
      ========================================================== -->
 <section id="tiktok-section">
   <h2 class="tiktok-heading">Bizi İzle</h2>
 
-  <div class="tiktok-card">
-    <!--
-      Video ID'sini biliyorsan aşağıdaki src'yi
-      "https://www.tiktok.com/embed/v2/VIDEO_ID" ile değiştir.
-    -->
-    <iframe
-      src="https://www.tiktok.com/embed/v2/7300000000000000000"
-      allow="autoplay; encrypted-media; picture-in-picture"
-      allowfullscreen
-      title="TikTok Video"
-    ></iframe>
+  <div class="tiktok-card" id="tiktokCard">
+    <!-- Oynatma oku -->
+    <div class="play-btn" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </div>
+
+    <!-- Video iframe konteyneri -->
+    <div class="video-frame" id="videoFrame">
+      <!-- 
+        TikTok video ID'sini biliyorsan aşağıdaki src'yi 
+        "https://www.tiktok.com/embed/v2/VIDEO_ID" ile değiştir.
+        Şu an placeholder olarak boş bırakıldı.
+      -->
+      <iframe
+        id="tiktokIframe"
+        src=""
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+        title="TikTok Video"
+      ></iframe>
+    </div>
   </div>
 
   <a class="tiktok-link" href="https://vt.tiktok.com/ZSpUF1jWa/" target="_blank" rel="noopener noreferrer">
@@ -502,8 +555,7 @@
   </a>
 
   <p class="tiktok-note">
-    Video gömme özelliği için geçerli bir video ID'si gerekir.
-    Aşağıdaki butonla videoya doğrudan ulaşabilirsin.
+    Videoyu sayfada açmak için yukarıdaki oynatma okuna tıkla.
   </p>
 </section>
 
@@ -517,7 +569,6 @@
 <script>
 /* ==========================================================
    SENI SEVIYORUM — MONOCHROME GRAPHICS ENGINE
-   Fully self-contained, no dependencies
    ========================================================== */
 (function () {
   'use strict';
@@ -527,11 +578,11 @@
      ========================================================== */
   const CONFIG = {
     heart: {
-      edgeDensity: 3200,          // kenar parçacık sayısı (ekran boyutuna göre ölçeklenir)
-      innerDensityRatio: 0.32,    // iç dolgu oranı
-      scaleDivisor: 42,           // kalp ölçek böleni (büyüdükçe kalp küçülür)
-      centerYRatio: 0.38,         // kalbin dikey merkezi (0 = üst, 1 = alt)
-      jitterRadius: 1.8,          // kenar dağınıklığı
+      edgeDensity: 3200,
+      innerDensityRatio: 0.32,
+      scaleDivisor: 42,
+      centerYRatio: 0.38,
+      jitterRadius: 1.8,
       innerJitter: 1.4,
       stiffnessMin: 0.035,
       stiffnessMax: 0.075,
@@ -543,7 +594,6 @@
       baseSizeMax: 1.6,
       alphaMin: 0.25,
       alphaMax: 0.9,
-      hueBase: 0,                 // monokrom — kullanılmıyor ama yapı için
     },
     ambient: {
       count: 220,
@@ -585,10 +635,6 @@
       tileSize: 200,
       intensity: 0.05,
     },
-    trails: {
-      enabled: true,
-      fade: 0.18,
-    },
   };
 
   /* ==========================================================
@@ -597,9 +643,6 @@
   const Util = {
     rand(min, max) {
       return Math.random() * (max - min) + min;
-    },
-    randInt(min, max) {
-      return Math.floor(this.rand(min, max + 1));
     },
     lerp(a, b, t) {
       return a + (b - a) * t;
@@ -612,16 +655,7 @@
       const dy = y2 - y1;
       return dx * dx + dy * dy;
     },
-    easeOutCubic(t) {
-      return 1 - Math.pow(1 - t, 3);
-    },
-    easeInOutCubic(t) {
-      return t < 0.5
-        ? 4 * t * t * t
-        : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    },
     grey(v, alpha) {
-      // Monokrom yardımcı: 0-255 gri → rgba
       const c = Math.round(v);
       return `rgba(${c},${c},${c},${alpha})`;
     },
@@ -631,13 +665,6 @@
      HEART PARAMETRIC CURVE
      ========================================================== */
   const HeartMath = {
-    /**
-     * Klasik kalp eğrisi:
-     *   x = 16 sin³(t)
-     *   y = 13 cos(t) − 5 cos(2t) − 2 cos(3t) − cos(4t)
-     * Canvas Y aşağı pozitif olduğu için işaret tersine çevrilir,
-     * sonra görsel denge için −6 ofset uygulanır.
-     */
     point(t) {
       const sinT = Math.sin(t);
       const x = 16 * sinT * sinT * sinT;
@@ -653,22 +680,18 @@
   };
 
   /* ==========================================================
-     HEARTBEAT CURVE
-     "Lub-dub" iki vuruşlu kalp atışı eğrisi
+     HEARTBEAT
      ========================================================== */
   function heartbeat(timestamp) {
     const beatDuration = 60000 / CONFIG.pulse.bpm;
     const p = (timestamp % beatDuration) / beatDuration;
 
-    // İlk vuruş (güçlü)
     if (p < 0.09) {
       return Math.sin((p / 0.09) * Math.PI) * 0.8;
     }
-    // Kısa duraklama
     if (p < 0.18) {
       return 0;
     }
-    // İkinci vuruş (zayıf)
     if (p < 0.26) {
       return Math.sin(((p - 0.18) / 0.08) * Math.PI) * 0.4;
     }
@@ -677,9 +700,6 @@
 
   /* ==========================================================
      GLOW SPRITE CACHE
-     Merkezi parlak → dışa doğru şeffaf yumuşak disk.
-     ctx.createRadialGradient her karede pahalı olduğu için
-     tek seferlik önbelleğe alınır.
      ========================================================== */
   const GlowCache = (() => {
     const cache = new Map();
@@ -717,20 +737,18 @@
   })();
 
   /* ==========================================================
-     FILM GRAIN — Offscreen noise tile
+     FILM GRAIN
      ========================================================== */
   const Grain = (() => {
     let tile = null;
-    let ctxTile = null;
     let pattern = null;
-    let patternCtx = null;
 
     function buildTile() {
       const size = CONFIG.grain.tileSize;
       tile = document.createElement('canvas');
       tile.width = size;
       tile.height = size;
-      ctxTile = tile.getContext('2d');
+      const ctxTile = tile.getContext('2d');
 
       const imageData = ctxTile.createImageData(size, size);
       const data = imageData.data;
@@ -739,7 +757,7 @@
         data[i] = v;
         data[i + 1] = v;
         data[i + 2] = v;
-        data[i + 3] = Math.random() * 60;  // çok düşük alfa
+        data[i + 3] = Math.random() * 60;
       }
       ctxTile.putImageData(imageData, 0, 0);
     }
@@ -789,7 +807,6 @@
     mouseNorm: { x: 0, y: 0 },
     shake: { x: 0, y: 0, decay: 1 },
     ripples: [],
-    reducedMotion: false,
   };
 
   /* ==========================================================
@@ -802,9 +819,6 @@
     farStars: [],
   };
 
-  /* --------------------------------------------------------
-     Heart particle factory
-     -------------------------------------------------------- */
   function createHeartParticles() {
     Systems.heart.length = 0;
 
@@ -814,7 +828,6 @@
       Math.floor(area / 380)
     );
 
-    // Kenar parçacıkları
     for (let i = 0; i < edgeCount; i++) {
       const t = (i / edgeCount) * Math.PI * 2;
       const base = HeartMath.point(t);
@@ -841,18 +854,11 @@
         phase: Math.random() * Math.PI * 2,
         speed: Util.rand(0.006, 0.03),
         wobble: Util.rand(0.15, 0.85),
-        stiffness: Util.rand(
-          CONFIG.heart.stiffnessMin,
-          CONFIG.heart.stiffnessMax
-        ),
-        damping: Util.rand(
-          CONFIG.heart.dampingMin,
-          CONFIG.heart.dampingMax
-        ),
+        stiffness: Util.rand(CONFIG.heart.stiffnessMin, CONFIG.heart.stiffnessMax),
+        damping: Util.rand(CONFIG.heart.dampingMin, CONFIG.heart.dampingMax),
       });
     }
 
-    // İç dolgu parçacıkları
     const innerCount = Math.floor(edgeCount * CONFIG.heart.innerDensityRatio);
     for (let i = 0; i < innerCount; i++) {
       const t = Math.random() * Math.PI * 2;
@@ -886,9 +892,6 @@
     }
   }
 
-  /* --------------------------------------------------------
-     Ambient particles (her yöne süzülenler)
-     -------------------------------------------------------- */
   function createAmbientParticles() {
     Systems.ambient.length = 0;
     const count = CONFIG.ambient.count;
@@ -907,9 +910,6 @@
     }
   }
 
-  /* --------------------------------------------------------
-     Bokeh field (bulanık derinlik)
-     -------------------------------------------------------- */
   function createBokeh() {
     Systems.bokeh.length = 0;
 
@@ -926,9 +926,6 @@
     }
   }
 
-  /* --------------------------------------------------------
-     Far stars (parallax)
-     -------------------------------------------------------- */
   function createFarStars() {
     Systems.farStars.length = 0;
     for (let i = 0; i < CONFIG.farStars.count; i++) {
@@ -963,7 +960,6 @@
       State.H / (CONFIG.heart.scaleDivisor + 4)
     );
 
-    // Sistemleri yeniden kur
     createHeartParticles();
     createAmbientParticles();
     createBokeh();
@@ -971,7 +967,7 @@
   }
 
   /* ==========================================================
-     INPUT HANDLERS
+     INPUT
      ========================================================== */
   function attachInput() {
     window.addEventListener('mousemove', (e) => {
@@ -1003,7 +999,6 @@
       State.mouse.active = false;
     });
 
-    // Tıklama → monokrom ripple
     State.canvas.addEventListener('pointerdown', (e) => {
       const rect = State.canvas.getBoundingClientRect();
       State.ripples.push({
@@ -1022,7 +1017,7 @@
   }
 
   /* ==========================================================
-     RENDER LAYER — far stars
+     RENDER LAYERS
      ========================================================== */
   function renderFarStars() {
     const ctx = State.ctx;
@@ -1037,7 +1032,6 @@
       let x = star.x - px;
       let y = star.y - py;
 
-      // Sonsuz sarmal
       if (x < -10) x += State.W + 20;
       if (x > State.W + 10) x -= State.W + 20;
       if (y < -10) y += State.H + 20;
@@ -1050,9 +1044,6 @@
     }
   }
 
-  /* ==========================================================
-     RENDER LAYER — bokeh
-     ========================================================== */
   function renderBokeh(dt) {
     const ctx = State.ctx;
 
@@ -1081,9 +1072,6 @@
     }
   }
 
-  /* ==========================================================
-     RENDER LAYER — ambient
-     ========================================================== */
   function renderAmbient(dt) {
     const ctx = State.ctx;
 
@@ -1120,9 +1108,6 @@
     }
   }
 
-  /* ==========================================================
-     RENDER LAYER — aurora / soft light behind heart
-     ========================================================== */
   function renderAurora(beat) {
     const ctx = State.ctx;
     const pulse = 1 + beat * 0.09;
@@ -1132,43 +1117,35 @@
       State.cx, State.cy, 0,
       State.cx, State.cy, radius
     );
-    grad.addColorStop(0,    Util.grey(255, 0.05));
+    grad.addColorStop(0, Util.grey(255, 0.05));
     grad.addColorStop(0.35, Util.grey(230, 0.022));
-    grad.addColorStop(0.7,  Util.grey(180, 0.008));
-    grad.addColorStop(1,    Util.grey(120, 0));
+    grad.addColorStop(0.7, Util.grey(180, 0.008));
+    grad.addColorStop(1, Util.grey(120, 0));
 
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, State.W, State.H);
   }
 
-  /* ==========================================================
-     RENDER LAYER — heart particles (spring physics)
-     ========================================================== */
   function renderHeart(dt, beat) {
     const ctx = State.ctx;
     const pulse = 1 + beat * CONFIG.pulse.amplitude;
 
     for (const p of Systems.heart) {
-      // Faz ilerlemesi
       p.phase += p.speed * dt;
 
-      // Titreşim
       const wx = Math.sin(p.phase * 0.6) * p.wobble;
       const wy = Math.cos(p.phase * 0.72) * p.wobble;
 
-      // Hedef pozisyon
       const targetX =
         State.cx + (p.baseX + p.jx + wx) * State.heartScale * pulse;
       const targetY =
         State.cy + (p.baseY + p.jy + wy) * State.heartScale * pulse;
 
-      // Yay kuvveti
       const dx = targetX - p.x;
       const dy = targetY - p.y;
       p.vx += dx * p.stiffness;
       p.vy += dy * p.stiffness;
 
-      // Fare itmesi
       if (State.mouse.active) {
         const mdx = p.x - State.mouse.x;
         const mdy = p.y - State.mouse.y;
@@ -1184,15 +1161,12 @@
         }
       }
 
-      // Sönümleme
       p.vx *= p.damping;
       p.vy *= p.damping;
 
-      // Pozisyon güncelle
       p.x += p.vx * dt;
       p.y += p.vy * dt;
 
-      // Işıma (önbellek kullan)
       const tw = 0.65 + Math.sin(p.phase * 1.3) * 0.35;
       const a = p.alpha * tw;
       const s = p.size * pulse;
@@ -1208,7 +1182,6 @@
       );
       ctx.globalAlpha = 1;
 
-      // Çekirdek
       ctx.beginPath();
       ctx.fillStyle = Util.grey(255, Math.min(1, a + 0.3));
       ctx.arc(p.x, p.y, s, 0, Math.PI * 2);
@@ -1216,15 +1189,11 @@
     }
   }
 
-  /* ==========================================================
-     RENDER LAYER — constellation lines
-     Sadece görünür ambient parçacıklar arasında ince çizgiler
-     ========================================================== */
   function renderConstellations() {
     const ctx = State.ctx;
     const maxD2 = CONFIG.constellation.maxDistance * CONFIG.constellation.maxDistance;
     const list = Systems.ambient;
-    const stride = 3;   // performans için seyrek kontrol
+    const stride = 3;
 
     ctx.lineWidth = 0.5;
 
@@ -1253,9 +1222,6 @@
     }
   }
 
-  /* ==========================================================
-     RENDER LAYER — ripples
-     ========================================================== */
   function renderRipples(dt) {
     const ctx = State.ctx;
 
@@ -1295,7 +1261,6 @@
     State.globalTime = now;
     State.frameCount++;
 
-    // Shake decay
     if (State.shake.decay > 0.001) {
       State.shake.decay *= 0.9;
     } else {
@@ -1303,10 +1268,8 @@
       State.shake.y = 0;
     }
 
-    // Arka plan temizle
     ctx.clearRect(0, 0, State.W, State.H);
 
-    // Shake transform
     ctx.save();
     if (State.shake.decay > 0.001) {
       ctx.translate(
@@ -1315,7 +1278,6 @@
       );
     }
 
-    // Katmanlar
     ctx.globalCompositeOperation = 'lighter';
 
     renderAurora(heartbeat(now));
@@ -1329,7 +1291,6 @@
     ctx.globalCompositeOperation = 'source-over';
     ctx.restore();
 
-    // Grain
     const grainX = (State.frameCount * 17) % 200 - 100;
     const grainY = (State.frameCount * 11) % 200 - 100;
     Grain.render(ctx, State.W, State.H, grainX, grainY);
@@ -1345,8 +1306,7 @@
     const text = 'Seni Seviyorum';
     title.innerHTML = '';
 
-    // Her karakter için span oluştur, gecikme artarak
-    const startDelay = 0.8;      // splash sonrası başlangıç
+    const startDelay = 0.8;
     const perChar = 0.06;
     let charIndex = 0;
 
@@ -1369,12 +1329,11 @@
   }
 
   /* ==========================================================
-     SPLASH HANDLING
+     SPLASH
      ========================================================== */
   function runSplash() {
     const splash = document.getElementById('splash');
 
-    // Sayfa yüklenince 2.4 sn bekle, sonra kapat
     const ready = () => {
       setTimeout(() => {
         splash.classList.add('dismiss');
@@ -1392,27 +1351,55 @@
   }
 
   /* ==========================================================
+     TIKTOK OYNATICI — Oka basınca videoyu yükle
+     ========================================================== */
+  function initTikTokPlayer() {
+    const card = document.getElementById('tiktokCard');
+    const iframe = document.getElementById('tiktokIframe');
+    if (!card || !iframe) return;
+
+    // TikTok video ID'sini buraya gir.
+    // Örnek: const VIDEO_ID = '7300000000000000000';
+    // Şu an placeholder — video ID'si olmadan iframe boş kalır.
+    const VIDEO_ID = ''; // <-- buraya gerçek video ID'sini yaz
+
+    card.addEventListener('click', () => {
+      if (card.classList.contains('playing')) return;
+
+      if (VIDEO_ID) {
+        iframe.src = `https://www.tiktok.com/embed/v2/${VIDEO_ID}`;
+      } else {
+        // Video ID yoksa kullanıcıyı nazikçe bilgilendir
+        const note = document.querySelector('.tiktok-note');
+        if (note) {
+          note.textContent =
+            'Video kimliği henüz eklenmedi. Aşağıdaki butondan TikTok\'ta izleyebilirsin.';
+        }
+        return;
+      }
+
+      card.classList.add('playing');
+    });
+  }
+
+  /* ==========================================================
      INIT
      ========================================================== */
   function init() {
     State.canvas = document.getElementById('canvas');
     State.ctx = State.canvas.getContext('2d', { alpha: true });
-    State.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     resize();
     attachInput();
     buildTitle();
     runSplash();
+    initTikTokPlayer();
 
-    // Grain dokusunu periyodik yenile (hareketli görünsün)
     setInterval(() => Grain.regenerate(), 120);
 
     requestAnimationFrame(frame);
   }
 
-  /* ==========================================================
-     BAŞLAT
-     ========================================================== */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
